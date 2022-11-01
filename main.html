@@ -6,20 +6,20 @@
         var ws = new WebSocket("ws://121.4.237.235:35888")
         ws.onopen = function()
         {
-            ws.send("Give");
-            console.log("Give")
+            console.log("Receiving data from server...")
         };
         ws.onmessage = function (evt)
         {
             var received_msg = evt.data;
             console.log("Message is received")
+            document.getElementById("wall").innerHTML = received_msg
         };
-        document.getElementById("wall").innerHTML = received_msg
 
         function send(){
+            console.log("sending")
             var sendmsg = document.getElementById("msg").value
             ws.send(sendmsg)
-            console.log("sending")
+            console.log("success")
         }
     </script>
 
@@ -32,7 +32,7 @@
     </div>
 
     <div style="width:50%;float: left;">
-        <aside id="wall">
+        <aside id="wall" style="white-space: pre-line">
             Waiting...
         </aside>
     </div>
@@ -42,7 +42,7 @@
     	    <legend>表白</legend>
             <p>发送“表白”信息：</p>
             <textarea id="msg" cols="25" rows="5"></textarea><br></br>
-            <input type="button" value="发送" onlick="send"></input>
+            <button type="button" onclick="send()">发送</button>
 
         </fieldset>
     </div>
