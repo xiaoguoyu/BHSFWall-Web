@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script>
+        var ws = new WebSocket("ws://121.4.237.235:35888")
+        ws.onopen = function()
+        {
+            ws.send("Give");
+            console.log("Give")
+        };
+        ws.onmessage = function (evt)
+        {
+            var received_msg = evt.data;
+            console.log("Message is received")
+        };
+        document.getElementById("wall").innerHTML = received_msg
+
+        function send(){
+            var sendmsg = document.getElementById("msg").value
+            ws.send(sendmsg)
+            console.log("sending")
+        }
+    </script>
+
+    <title>BHSFWall</title>
+</head>
+<body>
+
+    <div id="header" style="background-color:#F0FFF0;">
+        <h1 style="margin-bottom:0;">BHSFWall</h1>
+    </div>
+
+    <div style="width:50%;float: left;">
+        <aside id="wall">
+            Waiting...
+        </aside>
+    </div>
+    <div style="width:50%;float: left;">
+        <fieldset>
+
+    	    <legend>表白</legend>
+            <p>发送“表白”信息：</p>
+            <textarea id="msg" cols="25" rows="5"></textarea><br></br>
+            <input type="button" value="发送" onlick="send"></input>
+
+        </fieldset>
+    </div>
+
+    <div id="footer" style="background-color:#F0FFF0;clear:both;text-align:center;">
+        By PythonXiao
+    </div>
+
+</body>
+</html>
