@@ -2,30 +2,28 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    
+
     <script>
         var ws = new WebSocket("ws://121.4.237.235:35888")
-        ws.onopen = function()
-        {
+        ws.onopen = function () {
             console.log("Receiving data from server...")
         };
-        ws.onmessage = function (evt)
-        {
+        ws.onmessage = function (evt) {
             var received_msg = evt.data;
             console.log("Message is received")
             document.getElementById("wall").innerHTML = received_msg
         };
 
-        function send(){
+        function send() {
             console.log("sending")
             var sendmsg = document.getElementById("msg").value
-            if(sendmsg == "") {
+            if (sendmsg == "") {
                 alert("请不要发送空白消息")
                 location.reload()
-            }else{
-            ws.send(sendmsg)
-            alert("发送成功")
-            location.reload()
+            } else {
+                ws.send(sendmsg)
+                alert("发送成功")
+                location.reload()
             }
         }
     </script>
@@ -34,29 +32,29 @@
 </head>
 <body>
 
-    <div id="header" style="background-color:#F0FFF0">
-        <h1 style="margin-bottom:0;">BHSFWall</h1>
-    </div>
+<div id="header" style="background-color: #F0FFF0">
+    <h1 style="margin-bottom: 0">BHSFWall</h1>
+</div>
 
-    <div style="width:50%;height: 700px;float: left;overflow-y: scroll">
-        <p id="wall" style="white-space: pre-line">
-            Waiting...
-        </p>
-    </div>
-    <div style="width:50%;float: left;">
-        <fieldset>
+<div style="width: 50%; height: 700px; float: left; overflow-y: scroll">
+    <p id="wall" style="white-space: pre-line">
+        Waiting...
+    </p>
+</div>
+<div style="width: 50%; float: left">
+    <fieldset>
 
-    	    <legend>表白</legend>
-            <p>发送“表白”信息：</p>
-            <textarea id="msg" cols="50" rows="10"></textarea><br></br>
-            <button type="button" onclick="send()">发送</button>
+        <legend>表白</legend>
+        <p>发送“表白”信息：</p>
+        <textarea id="msg" cols="50" rows="10"></textarea><br></br>
+        <button type="button" onclick="send()">发送</button>
 
-        </fieldset>
-    </div>
+    </fieldset>
+</div>
 
-    <div id="footer" style="background-color:#F0FFF0;clear:both;text-align:center">
-        By PythonXiao
-    </div>
+<div id="footer" style="background-color: #F0FFF0; clear: both; text-align: center">
+    By PythonXiao
+</div>
 
 </body>
 </html>
