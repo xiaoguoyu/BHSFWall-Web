@@ -19,8 +19,14 @@
         function send(){
             console.log("sending")
             var sendmsg = document.getElementById("msg").value
+            if(sendmsg == "") {
+                alert("请不要发送空白消息")
+                location.reload()
+            }else{
             ws.send(sendmsg)
-            console.log("success")
+            alert("发送成功")
+            location.reload()
+            }
         }
     </script>
 
@@ -28,27 +34,27 @@
 </head>
 <body>
 
-    <div id="header" style="background-color:#F0FFF0;">
+    <div id="header" style="background-color:#F0FFF0">
         <h1 style="margin-bottom:0;">BHSFWall</h1>
     </div>
 
-    <div style="width:50%;float: left;">
-        <aside id="wall" style="white-space: pre-line">
+    <div style="width:50%;height: 700px;float: left;overflow-y: scroll">
+        <p id="wall" style="white-space: pre-line">
             Waiting...
-        </aside>
+        </p>
     </div>
     <div style="width:50%;float: left;">
         <fieldset>
 
     	    <legend>表白</legend>
             <p>发送“表白”信息：</p>
-            <textarea id="msg" cols="25" rows="5"></textarea><br></br>
+            <textarea id="msg" cols="50" rows="10"></textarea><br></br>
             <button type="button" onclick="send()">发送</button>
 
         </fieldset>
     </div>
 
-    <div id="footer" style="background-color:#F0FFF0;clear:both;text-align:center;">
+    <div id="footer" style="background-color:#F0FFF0;clear:both;text-align:center">
         By PythonXiao
     </div>
 
